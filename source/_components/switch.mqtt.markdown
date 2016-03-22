@@ -51,3 +51,25 @@ Configuration variables:
 <p class='note warning'>
 Make sure that your topic match exact. `some-topic/` and `some-topic` are different topics.
 </p>
+
+## Examples
+
+### Simple Switch
+The following switch turns on a pump. 
+
+```
+- platform: mqtt
+  name: "Pool_Pump"
+  command_topic: "poolPump-set"
+  state_topic: "poolPump"
+  payload_on: "ON"
+  payload_off: "OFF"
+  ```
+  **Note** that in this case, the feedback from the state_topic must match the payload_on/off values.
+  
+  you will see something like the following in the HASS output:
+  ```
+  INFO:homeassistant.core:Bus:Handling <Event mqtt_message_received[L]: qos=0, topic=poolPump, payload=ON>
+  INFO:homeassistant.core:Bus:Handling <Event mqtt_message_received[L]: qos=0, topic=poolPump, payload=OFF>
+```
+  
